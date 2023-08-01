@@ -12,7 +12,7 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;800;900&family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
 
-        <script src="/IWA1/scripts.js" defer></script>
+        <script src="scripts.js" defer></script>
     </head>
     <body>
         <header class="header">
@@ -39,10 +39,10 @@
             </button>    
         </aside> -->
         <main class="counter">
-            <input class="counter_value" readonly value="0">
+            <input class="counter_value" readonly value="0" data-key="number" >
             <div class="counter__actions">
-                <button class="counter__button">-</button>
-                <button class="counter__button">+</button>
+                <button class="counter__button counter__button_first" data-key="subtract">-</button>
+                <button class="counter__button" data-key="add">+</button>
             </div>
         </main>
         <footer class="footer">
