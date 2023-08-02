@@ -4,6 +4,8 @@
     --color-dark-grey: #33333d;
     --color-medium-grey: #424250;
     --color-light-grey: #d2d6dc;
+    --color-light-red: #f2dede;;
+    --color-dark-red: #a94442;
 }
 
 * {
@@ -98,4 +100,11 @@ body {
 
 .footer__link {
     color: var(--color-white);
+}
+
+.error {
+    padding: 2rem;
+    background: var(--color-light-red);
+    color: var(--color-dark-red);
+
 }
