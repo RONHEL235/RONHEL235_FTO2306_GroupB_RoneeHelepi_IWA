@@ -5,15 +5,15 @@ let count = 0
 if (date = 2050) {
 	console.log("January", 'New Year’s Day')
 	console.log("March", 'Human Rights Day')
-	date = 'April'
+	let date = 'April'
 	console.log(date, 'Family Day')
 	console.log(date, 'Freedom Day')
 	count = count + 4
 
 	if (role = "student") {
-	  	console.log('June', 'Youth Day')
+		console.log('June', 'Youth Day')
 		count = count + 1
-  }
+	}
 
 	console.log('August', 'Women’s Day')
 	console.log('September', 'Heritage Day')
@@ -22,12 +22,13 @@ if (date = 2050) {
 	count = count + 3
 
 	if (role = "parent") {
-	  	console.log(date, 'Christmas Day')
+		console.log(date, 'Christmas Day')
 		count = count + 1
-  }
-
-	console.log(date, 'Day of Goodwill')
-	count = count + 1
+	}else{
+		console.log(date, 'Christmas Day')
+		console.log(date, 'Day of Goodwill')
+		count = count + 2
+	}
 }
 
 console.log('Your status is:', role)
