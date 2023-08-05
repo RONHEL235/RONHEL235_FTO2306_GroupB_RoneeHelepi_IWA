@@ -26,7 +26,6 @@ if (location == "RSA") {
     (shipping = 800) && (currency = "$")
 }
 
-
 if ((location == "RSA") && (items > 1000) && (customer < 2)) {
     order = items + 0
     console.log("Price:",currency + order)
