@@ -1,8 +1,8 @@
 const date = 2050
-const role = "parent"
+const role = "student"
 let count = 0
 
-if (date === 2050) {
+if (date == 2050) {
 	console.log("January", 'New Year’s Day')
 	console.log("March", 'Human Rights Day')
 	let date = 'April'
@@ -10,7 +10,7 @@ if (date === 2050) {
 	console.log(date, 'Freedom Day')
 	count = count + 4
 
-	if (role === "student") {
+	if (role == "student") {
 		console.log('June', 'Youth Day')
 		count = count + 1
 	}else{}
@@ -21,7 +21,7 @@ if (date === 2050) {
 	console.log(date, 'Day of Reconciliation')
 	count = count + 3
 
-	if (role === "parent") {
+	if (role == "parent") {
 		console.log(date, 'Christmas Day')
 		count = count + 1
 	}else{}

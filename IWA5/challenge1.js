@@ -3,8 +3,8 @@ const BANNED_WARNING = "Unfortunately we do not ship to your country of residenc
 const NONE_SELECTED = "0"
 
 /* Change here  */
-const location = "sadf"
-const customer = 12
+const location = "NA"
+const customer = 1
 
 let shipping = null
 let currency = null
@@ -18,24 +18,24 @@ const pens = 5 * parseInt(NONE_SELECTED)
 
 const items = shoes + toys + shirts + batteries + pens
 
-if (location === "RSA") { 
+if (location == "RSA") { 
     (shipping = 400) && (currency = "R")
-}else if (location === "NAM") {
+}else if (location == "NAM") {
     (shipping = 600) && (currency = "$")
 }else{
     (shipping = 800) && (currency = "$")
 }
 
 
-if ((location === "RSA") && (items > 1000) && (customer < 2)) {
+if ((location == "RSA") && (items > 1000) && (customer < 2)) {
     order = items + 0
     console.log("Price:",currency + order)
-}else if ((location === "NAM") && (items > 60) && (customer < 2)) {
+}else if ((location == "NAM") && (items > 60) && (customer < 2)) {
     order = items + 0
     console.log("Price:",currency + order)
-}else if(location === "NK") {
+}else if(location == "NK") {
      console.log(BANNED_WARNING)
-}else if (customer !== 1) {
+}else if (customer != 1) {
     console.log(FREE_WARNING)
 }else{
     order = items + shipping
