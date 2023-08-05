@@ -6,12 +6,13 @@ const transport = 10.2;
 const hourOfDay = 00;
 const minuteOfDay = 00;
 
-// Only change below this line
+// Change code below this line
+const symbol = "R"
 
-if hourOfDay && (minuteOfDay !== null) && (hourOfDay == '00') && (minuteOfDay == '00') {
-	const taxAsDecimal = tax / '100'
-  const startingAfterTax = salary * '1' - taxAsDecimal
-	const balace = starting - transport - food - rent
+if ((hourOfDay == "0" ) && (minuteOfDay == "0")) {
+    //Calculate balance
+    const taxAsDecimal = parseInt(tax)/100  
+    const startingAfterTax = (salary - (salary * taxAsDecimal))
+    const balance = startingAfterTax - transport - food - rent  
+    console.log("Balance is:",symbol + balance.toFixed(2))
 }
-	
-console.log(balance.toFixed(3))
