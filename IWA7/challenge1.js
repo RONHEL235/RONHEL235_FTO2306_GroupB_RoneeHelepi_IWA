@@ -1,2 +1,3 @@
-const value = "3"
-console.log(parseInt(value) + 4 + parseInt(value))
+const stringValue = "3"
+const value = parseInt(stringValue)
+console.log(value + 4 + value)
