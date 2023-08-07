@@ -9,17 +9,16 @@ const sarahBalance = '-4582.2'
 const divider = '----------------------------------'
 //Change below 
 
-/* To do:  
-* Fix: Space between the names 
-* Fix: Money from negative to positive
-* Fix: Insert space between 13 and 976
-* Fix: Money to 2 decimal places  
-*/
+const leoPositiveBalance = parseFloat(leoBalance.replace("-", ""))
+const sarahPositiveBalance = parseFloat(sarahBalance.replace("-", "")) 
+const amount = parseFloat(leoBalance.replace("-", "")) + parseFloat(sarahBalance.replace("-", ""))
+const amountSeparated = parseFloat(amount)
+
 const result = 
-`${leoName} ${leoSurname} ${`(Owed: R${leoBalance})`} 
-${sarahName} ${sarahSurname} ${`(Owed: R${sarahBalance})`}
- 
+`${leoName} ${leoSurname.trim()} ${`(Owed: R ${leoPositiveBalance.toFixed(2)})`} 
+${sarahName.trim()} ${sarahSurname} ${`(Owed: R ${sarahPositiveBalance.toFixed(2)})`}
+
 ${divider}
-Total amount owed: R${parseInt(leoBalance) + parseInt(sarahBalance)}
+Total amount owed: R ${amountSeparated.toFixed(2)}
 ${divider}`
 console.log(result)
