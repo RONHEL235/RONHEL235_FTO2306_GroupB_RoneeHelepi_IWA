@@ -12,7 +12,11 @@ const divider = '----------------------------------'
 const leoPositiveBalance = parseFloat(leoBalance.replace("-", ""))
 const sarahPositiveBalance = parseFloat(sarahBalance.replace("-", "")) 
 const amount = parseFloat(leoBalance.replace("-", "")) + parseFloat(sarahBalance.replace("-", ""))
-const amountSeparated = parseFloat(amount)
+const amountSeparated = parseFloat(amount) 
+
+/* To do: 
+* Separate the number 13 and 976
+ */
 
 const result = 
 `${leoName} ${leoSurname.trim()} ${`(Owed: R ${leoPositiveBalance.toFixed(2)})`} 
