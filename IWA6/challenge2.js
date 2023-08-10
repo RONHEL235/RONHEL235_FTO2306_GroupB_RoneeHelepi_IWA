@@ -3,8 +3,8 @@ const tax = '8%';
 const food = 51.7501;
 const salary = 800;
 const transport = 10.2;
-const hourOfDay = 00;
-const minuteOfDay = 00;
+const hourOfDay = 0;
+const minuteOfDay = 0;
 
 // Change code below this line
 const symbol = "R"
