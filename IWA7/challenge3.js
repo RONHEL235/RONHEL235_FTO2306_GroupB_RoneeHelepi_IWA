@@ -14,10 +14,6 @@ const sarahPositiveBalance = parseFloat(sarahBalance.replace("-", ""))
 const amount = parseFloat(leoBalance.replace("-", "")) + parseFloat(sarahBalance.replace("-", ""))
 const amountSeparated = parseFloat(amount) 
 
-/* To do: 
-* Separate the number 13 and 976
- */
-
 const result = 
 `${leoName} ${leoSurname.trim()} ${`(Owed: R ${leoPositiveBalance.toFixed(2)})`} 
 ${sarahName.trim()} ${sarahSurname} ${`(Owed: R ${sarahPositiveBalance.toFixed(2)})`}
@@ -26,3 +22,4 @@ ${divider}
 Total amount owed: R ${amountSeparated.toFixed(2)}
 ${divider}`
 console.log(result)
+
