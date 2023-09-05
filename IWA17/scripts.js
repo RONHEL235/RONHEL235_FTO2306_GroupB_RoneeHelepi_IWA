@@ -18,15 +18,17 @@ const getDaysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 
 // Only edit below
 /* 1 */
 const createArray = (length) => {
-    const result = [];
+    const result = []
 
     for (let i = 0; i < length; i = i + 1) {
-        result.push(i);
+        result.push(i)
     }
-    return result;
+    return result
+    // return a list that takes in the argument length, does some looping and gives it back
 }
 
 /* 2 */
+
 const createData = () => {
     const current = new Date();
     current.setDate(1);
@@ -65,6 +67,7 @@ const addCell = (existing, classString, value) => {
             &nbsp;${value}&nbsp;
         </td>
     `;
+
     return result;
 }
 
