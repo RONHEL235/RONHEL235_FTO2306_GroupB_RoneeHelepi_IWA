@@ -1,4 +1,4 @@
-import {BOOKS_PER_PAGE, authors} from 'data.js'
+//Import data.js 
 
 //Two Variables, do not know what they mean
 const matches = books
@@ -29,7 +29,6 @@ Appended each preview element to the fragment.
 Finally, appended the fragment to the data-list-items container.
 Make sure to replace createPreview with your actual function that creates and returns a DOM element representing a book preview. 
 */
-
 // Create DOM Nodes and add things to them
 const fragment = document.createDocumentFragment()
 
@@ -48,7 +47,6 @@ for (let i = 0; i < extracted.length; i++) {
 
     fragment.appendChild(preview)
 }
-
 // Append the fragment to the data-list-items container
 const dataListItems = document.querySelector("[data-list-items]")
 dataListItems.appendChild(fragment)
@@ -71,7 +69,6 @@ const allGenresOption = document.createElement('option')
 allGenresOption.value = 'any'
 allGenresOption.innerText = 'All Genres'
 genres.appendChild(allGenresOption)
-
 // Loop over the genres array and assign options to them
 for (const { id, name } of genresArray) {
     const genreOption = document.createElement('option')
@@ -79,10 +76,10 @@ for (const { id, name } of genresArray) {
     genreOption.innerText = name
     genres.appendChild(genreOption)
 }
-
 // Append the fragment to the data-search-genres container
 const dataSearchGenres = document.querySelector('[data-search-genres]')
 dataSearchGenres.appendChild(genres)
+
 
 
 /*Created a document.createDocumentFragment() to store the <option> elements.
@@ -93,7 +90,6 @@ Appended each option to the authors fragment.
 Finally, appended the authors fragment to the data-search-authors container.*/
 // Create DOM Nodes and add things to them
 const authors = document.createDocumentFragment()
-
 // Create an "All Authors" option
 const allAuthorsOption = document.createElement('option')
 allAuthorsOption.value = 'any'
@@ -107,60 +103,80 @@ for (const [id, name] of authorsArray) {
     authorOption.innerText = name
     authors.appendChild(authorOption)
 }
-
 // Append the fragment to the data-search-authors container
 const dataSearchAuthors = document.querySelector('[data-search-authors]')
 dataSearchAuthors.appendChild(authors)
 
 
 
-//Light And Dark theme
-data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
-v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' : 'day'
+/* This the toggling from the Light and Dark modes   
+ */
+const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+const theme = darkMode ? 'night' : 'day'
+document.documentElement.style.setProperty('--color-dark', theme.dark)
+document.documentElement.style.setProperty('--color-light', theme.light)
 
-documentElement.style.setProperty('--color-dark', css[v].dark)
-documentElement.style.setProperty('--color-light', css[v].light)
 
+/* 
+This is the blue button that gets displayed at the bottom of the app 
+to display the number of books left.  
+*/
+const dataListButton = document.querySelector('[data-list-button]')
 
-//Something about disabling the button when the book page length is greater than 0
-data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
-data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
+// Calculate the remaining books to show
+const remainingBooks = matches.length - (page * BOOKS_PER_PAGE)
 
-data-list-button.innerHTML = /* html */ [
-    '<span>Show more</span>',
-    '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-]
+// Update the button label and disabled state
+dataListButton.innerHTML = `<span>Show more</span><span class="list__remaining">(${remainingBooks > 0 ? remainingBooks : 0})</span>`
+dataListButton.disabled = remainingBooks <= 0
+
 
 
 // EVENT HANDLERS
 
-//Event Handlers (Click)
+//Selectors
+const dataSettingsOverlay = document.querySelector('[data-settings-overlay]') 
+const dataSettingsCancel = document.querySelector('[data-settings-cancel]')
+const dataSettingsForm = document.querySelector('[data-settings-form]')
+
+
+//Event Handler for for Settings
+//Event Handler for Settings Overlay Submit
+dataSettingsOverlay.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const result = Object.fromEntries(formData);
+    document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
+    document.documentElement.style.setProperty('--color-light', css[result.theme].light);
+    dataSettingsOverlay.open = false; // Corrected the assignment
+});
+
+// Event Handler for Settings Cancel Button
+dataSettingsCancel.addEventListener('click', () => {
+    dataSettingsOverlay.open = false;
+});
+
+// Event Handler for Settings Form Submit
+dataSettingsForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    actions.settings.submit(); // Assuming actions.settings.submit is a valid function
+});
+
+
+
+
+
+// Event handler for Searching
 data-search-cancel.click() { 
     data-search-overlay.open === false }
 
-data-settings-cancel.click() { 
-    querySelect(data-settings-overlay).open === false }
 
-data-settings-form.submit() { 
-    actions.settings.submit }
-    
-data-list-close.click() {
-    data-list-active.open === false }
-
-//A function(Event Handler)
-data-list-button.click() {
-    document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
-    actions.list.updateRemaining()
-    page = page + 1
-}
-
-//A function(Event Handler)
 data-header-search.click() {
-    data-search-overlay.open === true ;
+    data-search-overlay.open === true 
     data-search-title.focus();
 }
 
-//A function(Event Handler) 
+ 
 data-search-form.click(filters) {
     preventDefault()
     const formData = new FormData(event.target)
@@ -218,43 +234,59 @@ data-search-form.click(filters) {
     data-list-button.innerHTML = /* html */ `
         <span>Show more</span>
         <span class="list__remaining"> (${remaining})</span>
-    `
+        `
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
     data-search-overlay.open = false
 }
 
 
-//A function(Event Handler)
-data-settings-overlay.submit: {
-    preventDefault()
-    const formData = new FormData(event.target)
-    const result = Object.fromEntries(formData)
-    document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
-    document.documentElement.style.setProperty('--color-light', css[result.theme].light);
-    data-settings-overlay.open === false
-}
 
 
-//A function(Event HAndler)
-data-list-items.click() {
-    pathArray = Array.from(event.path || event.composedPath())
-    active;
+const dataListClose = document.querySelector('[data-list-close]')
+const dataListButton = document.querySelector('[data-list-button]')
+const dataListActive = document.querySelector('[data-list-active]')
+const dataListBlur = document.querySelector('[data-list-blur]')
+const dataListTitle = document.querySelector('[data-list-title]')
+const dataListSubtitle = document.querySelector('[data-list-subtitle]')
+const dataListDescription = document.querySelector('[data-list-description]')
 
-    for (node; pathArray; i++) {
-        if active break;
-        const previewId = node?.dataset?.preview
-    
+// Event Handler for List Close
+dataListClose.addEventListener('click', () => {
+    dataListActive.open = false; // Corrected the assignment
+});
+
+// Event Handler for List Button
+dataListButton.addEventListener('click', () => {
+    const startIndex = page * BOOKS_PER_PAGE;
+    const endIndex = (page + 1) * BOOKS_PER_PAGE;
+    const previewsFragment = createPreviewsFragment(matches, startIndex, endIndex);
+    document.querySelector('[data-list-items]').appendChild(previewsFragment); // Corrected the selector
+    actions.list.updateRemaining();
+    page = page + 1;
+});
+
+// Event Handler for List Items
+dataListItems.addEventListener('click', (event) => {
+    const pathArray = Array.from(event.path || event.composedPath());
+    let active = null;
+
+    for (const node of pathArray) {
+        if (active) break;
+        const previewId = node?.dataset?.preview;
+
         for (const singleBook of books) {
-            if (singleBook.id === id) active = singleBook
-        } 
+            if (singleBook.id === previewId) {
+                active = singleBook;
+                break;
+            }
+        }
     }
-    
-    if !active return
-    data-list-active.open === true
-    data-list-blur + data-list-image === active.image
-    data-list-title === active.title
-    
-    data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
-    data-list-description === active.description
-}
+
+    if (!active) return;
+    dataListActive.open = true; // Corrected the assignment
+    dataListBlur.value = active.image; // Corrected the assignment
+    dataListTitle.innerText = active.title; // Corrected the assignment
+    dataListSubtitle.innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`; // Corrected the assignment
+    dataListDescription.innerText = active.description; // Corrected the assignment
+});

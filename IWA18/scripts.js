@@ -62,7 +62,6 @@ const handleDragOver = (event) => {
     updateDraggingHtml({ over: null })
   }
   
-
 const handleDragStart = (event) => {
     const orderElement = event.target.closest('.order')
     if (!orderElement) return
@@ -165,5 +164,4 @@ for (const htmlArea of Object.values(html.area)) {
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
     htmlArea.addEventListener('drop', handleDragDrop) // Add this line
-  }
-  
+  }  
